@@ -1,0 +1,417 @@
+/* =======================================================
+   ROTOMDEX v1.0
+   Trainer Card Pokémon
+   ======================================================= */
+
+/* ---------- COLORI ---------- */
+
+:root{
+
+    --main:#5c1f1f;
+    --main-light:#8d3b3b;
+
+    --glass:rgba(25,20,20,.72);
+
+    --border:#b08a8a;
+
+    --text:#f5f2eb;
+
+    --shadow:rgba(0,0,0,.45);
+
+}
+
+
+/* ---------- RESET ---------- */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    background:#1b1b1b;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    height:100vh;
+
+    font-family:'Rajdhani',sans-serif;
+
+}
+
+
+/* =======================================================
+   CARD
+   ======================================================= */
+
+.card{
+
+    position:relative;
+
+    width:530px;
+    height:520px;
+
+    overflow:hidden;
+
+    border-radius:18px;
+
+    border:2px solid var(--border);
+
+    box-shadow:
+        0 0 25px rgba(0,0,0,.50);
+
+}
+
+
+/* =======================================================
+   SFONDO
+   ======================================================= */
+
+.background{
+
+    position:absolute;
+
+    inset:0;
+
+    background:url("img/background.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+    filter:blur(2px);
+
+    transform:scale(1.05);
+
+}
+
+
+/* =======================================================
+   PERSONAGGIO
+   ======================================================= */
+
+.trainer{
+
+    position:absolute;
+
+    bottom:0;
+
+    left:-40px;
+
+    height:103%;
+
+    z-index:2;
+
+    pointer-events:none;
+
+    filter:
+
+        drop-shadow(0 0 10px rgba(0,0,0,.5));
+
+}
+
+
+/* =======================================================
+   MENU
+   ======================================================= */
+
+.menu{
+
+    position:absolute;
+
+    top:12px;
+
+    left:12px;
+
+    right:12px;
+
+    display:flex;
+
+    gap:6px;
+
+    z-index:20;
+
+}
+
+.tab{
+
+    flex:1;
+
+    height:34px;
+
+    border:none;
+
+    cursor:pointer;
+
+    border-radius:8px;
+
+    background:var(--main);
+
+    color:white;
+
+    font-weight:bold;
+
+    transition:.25s;
+
+}
+
+.tab:hover{
+
+    background:var(--main-light);
+
+}
+
+.tab.active{
+
+    background:var(--main-light);
+
+    transform:translateY(2px);
+
+}
+
+
+/* =======================================================
+   PANNELLO
+   ======================================================= */
+
+.panel{
+
+    position:absolute;
+
+    top:60px;
+
+    right:15px;
+
+    bottom:15px;
+
+    width:290px;
+
+    padding:18px;
+
+    border-radius:15px;
+
+    background:var(--glass);
+
+    backdrop-filter:blur(8px);
+
+    color:var(--text);
+
+    overflow-y:auto;
+
+    z-index:10;
+
+    box-shadow:
+
+        0 0 20px rgba(0,0,0,.35);
+
+}
+
+
+/* =======================================================
+   SCROLLBAR
+   ======================================================= */
+
+.panel::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.panel::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+.panel::-webkit-scrollbar-thumb{
+
+    background:var(--main-light);
+
+    border-radius:20px;
+
+}
+
+
+/* =======================================================
+   PAGINE
+   ======================================================= */
+
+.page{
+
+    display:none;
+
+    animation:fade .35s;
+
+}
+
+.page.active{
+
+    display:block;
+
+}
+
+@keyframes fade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(15px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:none;
+
+    }
+
+}
+
+
+/* =======================================================
+   TITOLI
+   ======================================================= */
+
+h1{
+
+    font-size:32px;
+
+    margin-bottom:15px;
+
+}
+
+h2{
+
+    margin-bottom:15px;
+
+    font-size:24px;
+
+    border-bottom:1px solid rgba(255,255,255,.20);
+
+    padding-bottom:5px;
+
+}
+
+h3{
+
+    margin-bottom:5px;
+
+}
+
+
+/* =======================================================
+   TESTO
+   ======================================================= */
+
+p{
+
+    line-height:1.5;
+
+    margin-bottom:15px;
+
+}
+
+
+/* =======================================================
+   TABELLA INFO
+   ======================================================= */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+td{
+
+    padding:8px;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+td:first-child{
+
+    font-weight:bold;
+
+    width:40%;
+
+}
+
+
+/* =======================================================
+   TEAM
+   ======================================================= */
+
+.pokemon-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(6,1fr);
+
+    gap:8px;
+
+    margin-bottom:20px;
+
+}
+
+.pokemon-grid img{
+
+    width:40px;
+
+    height:40px;
+
+    transition:.25s;
+
+}
+
+.pokemon-grid img:hover{
+
+    transform:scale(1.15);
+
+}
+
+
+/* =======================================================
+   LEGAMI
+   ======================================================= */
+
+.relationship{
+
+    background:rgba(255,255,255,.05);
+
+    border-radius:10px;
+
+    padding:12px;
+
+    margin-bottom:12px;
+
+}
+
+
+/* =======================================================
+   LISTE
+   ======================================================= */
+
+ul{
+
+    padding-left:20px;
+
+}
+
+li{
+
+    margin-bottom:8px;
+
+}
